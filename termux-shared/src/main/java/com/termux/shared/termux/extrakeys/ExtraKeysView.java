@@ -680,10 +680,10 @@ public final class ExtraKeysView extends GridLayout {
 
 /**
      * ============================================================================
-     * IIAB CUSTOM IMPLEMENTATION (DECOUPLED)
+     * IIAB CUSTOM IMPLEMENTATION (NATIVE WAY)
      * ============================================================================
      */
-    public void loadIIABDefaultKeys(SpecialButtonListener listener) {
+    public void loadIIABDefaultKeys() {
         try {
             String iiabLayout = "[\n" +
                     "  ['ESC', 'TAB', 'CTRL', 'ALT', 'UP', 'DOWN', 'LEFT', 'RIGHT'],\n" +
@@ -694,7 +694,8 @@ public final class ExtraKeysView extends GridLayout {
                     ExtraKeysConstants.EXTRA_KEY_STYLE_DEFAULT, 
                     ExtraKeysConstants.EXTRA_KEY_ACTION_STYLE_DEFAULT);
 
-            this.reload(iiabKeysInfo, listener);
+            // We pass 0f because SDK>=21 calculates height automatically via layout_weight
+            this.reload(iiabKeysInfo, 0f);
 
         } catch (Exception e) {
             android.util.Log.e("IIAB-ExtraKeys", "Failed to load IIAB custom keys", e);
