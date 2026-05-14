@@ -690,7 +690,7 @@ public final class ExtraKeysView extends GridLayout {
                     "  ['~', '-', '/', '|', '{', '}', '[', ']']\n" +
                     "]";
 
-            ExtraKeysInfo iiabKeysInfo = new ExtraKeysInfo(iiabLayout);
+            ExtraKeysInfo iiabKeysInfo = new ExtraKeysInfo(iiabLayout, "default", null);
 
             this.reload(iiabKeysInfo, 0f);
 
