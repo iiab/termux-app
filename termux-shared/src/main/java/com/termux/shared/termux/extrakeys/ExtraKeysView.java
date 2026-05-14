@@ -685,9 +685,10 @@ public final class ExtraKeysView extends GridLayout {
      */
     public void loadIIABDefaultKeys() {
         try {
+            // We match the same Termux keys available
             String iiabLayout = "[\n" +
-                    "  ['ESC', 'TAB', 'CTRL', 'ALT', 'UP', 'DOWN', 'LEFT', 'RIGHT'],\n" +
-                    "  ['~', '-', '/', '|', '{', '}', '[', ']']\n" +
+                    "  ['ESC', '/', '-', 'HOME', 'UP', 'END', 'PGUP'],\n" +
+                    "  ['TAB', 'CTRL', 'ALT', 'LEFT', 'DOWN', 'RIGHT', 'PGDN']\n" +
                     "]";
 
             ExtraKeysInfo iiabKeysInfo = new ExtraKeysInfo(
