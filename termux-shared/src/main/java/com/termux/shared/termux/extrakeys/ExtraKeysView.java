@@ -683,7 +683,7 @@ public final class ExtraKeysView extends GridLayout {
      * IIAB CUSTOM IMPLEMENTATION (DECOUPLED)
      * ============================================================================
      */
-    public void loadIIABDefaultKeys(com.termux.shared.extrakeys.SpecialButtonListener listener) {
+    public void loadIIABDefaultKeys(SpecialButtonListener listener) {
         try {
             String iiabLayout = "[\n" +
                     "  ['ESC', 'TAB', 'CTRL', 'ALT', 'UP', 'DOWN', 'LEFT', 'RIGHT'],\n" +
@@ -694,7 +694,6 @@ public final class ExtraKeysView extends GridLayout {
                     ExtraKeysConstants.EXTRA_KEY_STYLE_DEFAULT, 
                     ExtraKeysConstants.EXTRA_KEY_ACTION_STYLE_DEFAULT);
 
-            // We just pass the layout and the listener. We don't care about the session here!
             this.reload(iiabKeysInfo, listener);
 
         } catch (Exception e) {
