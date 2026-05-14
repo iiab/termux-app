@@ -680,42 +680,21 @@ public final class ExtraKeysView extends GridLayout {
 
 /**
      * ============================================================================
-     * IIAB CUSTOM IMPLEMENTATION
+     * IIAB CUSTOM IMPLEMENTATION (DECOUPLED)
      * ============================================================================
-     * Bypasses the default termux.properties file watcher.
-     * Injects a hardcoded, robust keyboard matrix specifically designed for
-     * the IIAB native controller environment.
      */
-    public void loadIIABDefaultKeys(com.termux.shared.terminal.TerminalSession session) {
+    public void loadIIABDefaultKeys(com.termux.shared.extrakeys.SpecialButtonListener listener) {
         try {
-            // Define the custom IIAB layout using standard Termux matrix syntax
             String iiabLayout = "[\n" +
                     "  ['ESC', 'TAB', 'CTRL', 'ALT', 'UP', 'DOWN', 'LEFT', 'RIGHT'],\n" +
                     "  ['~', '-', '/', '|', '{', '}', '[', ']']\n" +
                     "]";
 
-            // Initialize the key info mapper
             ExtraKeysInfo iiabKeysInfo = new ExtraKeysInfo(iiabLayout, 
                     ExtraKeysConstants.EXTRA_KEY_STYLE_DEFAULT, 
                     ExtraKeysConstants.EXTRA_KEY_ACTION_STYLE_DEFAULT);
 
-            // Connect the special button states (CTRL, ALT) to the active session
-            // This is what allows 'swipes' and 'key locking' to work natively
-            com.termux.shared.extrakeys.SpecialButtonListener listener = 
-                new com.termux.shared.extrakeys.SpecialButtonListener() {
-                    @Override
-                    public void onSpecialButtonClick(ExtraKeysConstants.SpecialButton button, boolean active) {
-                        if (session != null) {
-                            if (button == ExtraKeysConstants.SpecialButton.CTRL) {
-                                session.setCtrlActive(active);
-                            } else if (button == ExtraKeysConstants.SpecialButton.ALT) {
-                                session.setAltActive(active);
-                            }
-                        }
-                    }
-                };
-
-            // Reload the view with our custom layout and listener
+            // We just pass the layout and the listener. We don't care about the session here!
             this.reload(iiabKeysInfo, listener);
 
         } catch (Exception e) {
