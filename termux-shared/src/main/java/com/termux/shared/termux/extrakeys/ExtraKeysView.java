@@ -690,11 +690,8 @@ public final class ExtraKeysView extends GridLayout {
                     "  ['~', '-', '/', '|', '{', '}', '[', ']']\n" +
                     "]";
 
-            ExtraKeysInfo iiabKeysInfo = new ExtraKeysInfo(iiabLayout, 
-                    ExtraKeysConstants.EXTRA_KEY_STYLE_DEFAULT, 
-                    ExtraKeysConstants.EXTRA_KEY_ACTION_STYLE_DEFAULT);
+            ExtraKeysInfo iiabKeysInfo = new ExtraKeysInfo(iiabLayout);
 
-            // We pass 0f because SDK>=21 calculates height automatically via layout_weight
             this.reload(iiabKeysInfo, 0f);
 
         } catch (Exception e) {
